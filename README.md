@@ -2,17 +2,18 @@
 
 ADVLib is a basic library and command line tool for importing custom embeddings into Labelbox.
 
-## Building
-
-The build a distributable whl file:
-```poetry build```
-
-
 ## Installation
 
-If you have a whl file, installing is easy:
+To install directly with Poetry do:
 
-```pip install advtool-0.1.0-py3-none-any.whl```
+```poetry install```
+
+If you want to build a whl file for installation on other machines:
+
+```
+poetry build
+pip install dist/advlib-0.1.0-py3-none-any.whl```
+```
 
 ## Setup
 
@@ -34,7 +35,10 @@ To create a custom embedding type:
 This will output the ID.
 
 Now use the ID to import an NDJson file in the format of
+
+```
 {"id": <drid>, "vector": [some floats]}
+```
 
 ```advtool embeddings import 98875a54-4ab8-4172-875a-544ab881726c  /Users/mrc/src/intelligence/packages/datavault/adv/benchmark/output2.ndjson```
 
