@@ -1,6 +1,6 @@
-# ADVTool
+# ADV Library
 
-This is a basic tool for importing custom embeddings into ADV.
+ADVLib is a basic library and command line tool for importing custom embeddings into Labelbox.
 
 ## Building
 
