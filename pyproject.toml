@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "advlib"
+version = "0.1.0"
+description = "Tool for embeddings v2 import"
+authors = ["Matt Chambers <mchambers@labelbox.com>"]
+packages = [
+    { include = "advlib", from = "pylib" }
+]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.7"
+requests = "^2.28"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+advtool = "advlib.main:main"
