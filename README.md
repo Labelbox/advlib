@@ -12,7 +12,7 @@ If you want to build a whl file for installation on other machines:
 
 ```
 poetry build
-pip install dist/advlib-0.1.0-py3-none-any.whl```
+pip install dist/advlib-0.1.0-py3-none-any.whl
 ```
 
 ## Setup
