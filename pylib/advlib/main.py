@@ -29,7 +29,7 @@ def handle_import_args(args):
     progress = UploadProgress(args.path)
     print(f"Uploading file: {args.path} ")
     app.import_vectors_from_file(args.id, args.path, callback=progress.callback)
-    print("Check 'advtool count <embedding id>' for total searchable embeddings")
+    print("Check 'advtool embeddings count <embedding id>' for total searchable embeddings")
 
 
 def handle_count_args(args):
