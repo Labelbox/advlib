@@ -27,8 +27,8 @@ def handle_create_args(args):
 
 
 def handle_delete_embedding_args(args):
-    emb = app.create_embedding_type(args.name, args.dims)
-    print(f"Embedding type created id={emb['id']}")
+    app.delete_embedding_type(args.id)
+    print(f"Embedding ID {args.id} deleted")
 
 
 def handle_import_args(args):
