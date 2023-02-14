@@ -29,6 +29,16 @@ class App:
         }
         return self.client.post("adv/v1/embeddings", payload)
 
+    def delete_embedding_type(self, id: str) -> dict:
+        """
+        Delete a custom embedding type.  If the embedding does not exist or
+        cannot be deleted, an AdvLibException is raised.
+
+        Args:
+            id: The embedding type id.
+        """
+        return self.client.delete(f"adv/v1/embeddings/{id}")
+
     def get_embedding_types(self) -> list:
         """
         Return a list of all embedding types for the current organization.

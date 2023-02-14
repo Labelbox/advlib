@@ -8,6 +8,12 @@ import requests
 logger = logging.getLogger(__name__)
 
 
+class AdvLibException(Exception):
+    def __init__(self, message, status):
+        super().__init__(message)
+        self.status = status
+
+
 class ADVClient:
     def __init__(self, apikey=None):
         self.url = os.environ.get("LABELBOX_API_URL", "https://api.labelbox.com/adv/")
@@ -30,6 +36,9 @@ class ADVClient:
 
     def get(self, path, body=None):
         return self._make_request("get", path, body)
+
+    def delete(self, path, body=None):
+        return self._make_request("delete", path, body)
 
     def send_ndjson(self, path, file_path, callback=None):
         """
@@ -94,14 +103,16 @@ class ADVClient:
         return rsp
 
     def _raise_exception(self, rsp):
-        data = {}
         try:
-            data.update(rsp.json())
+            kwargs = rsp.json()
         except Exception as e:
             # The result is not json.
-            data["message"] = "Your HTTP request was invalid '%s', response not " \
-                              "JSON formatted. %s" % (rsp.status_code, e)
-            data["status"] = rsp.status_code
+            kwargs = {
+                "message": f"Your HTTP request was invalid '{rsp.status_code}',",
+                f"response not JSON formatted. {e}"
+                "status": rsp.status_code
+            }
+        raise AdvLibException(**kwargs)
 
     def _headers(self, merge=None, content_type="application/json"):
         headers = {

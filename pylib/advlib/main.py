@@ -20,7 +20,13 @@ try:
 except Exception as e:
     print(f"Unable to init ADVClient, {e}")
 
+
 def handle_create_args(args):
+    emb = app.create_embedding_type(args.name, args.dims)
+    print(f"Embedding type created id={emb['id']}")
+
+
+def handle_delete_embedding_args(args):
     emb = app.create_embedding_type(args.name, args.dims)
     print(f"Embedding type created id={emb['id']}")
 
@@ -38,7 +44,7 @@ def handle_count_args(args):
 
 def handle_list_args(args):
     for item in app.get_embedding_types():
-        print(f"{item['id']} - {item['name']}")
+        print("{:>36} - {:<40} - dims: {:<5}".format(item['id'], item['name'], item['dims']))
 
 
 def create_embeddings_parser(subparsers):
@@ -54,6 +60,11 @@ def create_embeddings_parser(subparsers):
     create_parser.add_argument('dims', metavar='DIMENSIONS', type=int,
                                help='The number of dimensions this embedding has.')
     create_parser.set_defaults(func=handle_create_args)
+
+    delete_parser = embeddings.add_parser('delete', help='Remove an embedding type')
+    delete_parser.add_argument('id', metavar='NAME',
+                               help='The unique ID of the embedding')
+    create_parser.set_defaults(func=handle_delete_embedding_args)
 
     import_parser = embeddings.add_parser('import', help='Import Feature Vectors')
     import_parser.add_argument('id', metavar='ID',
