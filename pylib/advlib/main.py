@@ -64,7 +64,7 @@ def create_embeddings_parser(subparsers):
     delete_parser = embeddings.add_parser('delete', help='Remove an embedding type')
     delete_parser.add_argument('id', metavar='NAME',
                                help='The unique ID of the embedding')
-    create_parser.set_defaults(func=handle_delete_embedding_args)
+    delete_parser.set_defaults(func=handle_delete_embedding_args)
 
     import_parser = embeddings.add_parser('import', help='Import Feature Vectors')
     import_parser.add_argument('id', metavar='ID',
