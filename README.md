@@ -50,4 +50,7 @@ You also get a list of all available Embedding types.
 
 ```advtool embeddings list```
 
+You can delete a custom embedding type with the delete command.
+
+```advtool embeddings delete 98875a54-4ab8-4172-875a-544ab881726c```
 
