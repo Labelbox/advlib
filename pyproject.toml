@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "advlib"
-version = "0.2.0"
+version = "0.2.1"
 description = "Tool for embeddings v2 import"
 authors = ["Matt Chambers <mchambers@labelbox.com>"]
 packages = [

@@ -19,6 +19,7 @@ try:
     app = App()
 except Exception as e:
     print(f"Unable to init ADVClient, {e}")
+    sys.exit(1)
 
 
 def handle_create_args(args):

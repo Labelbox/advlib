@@ -9,9 +9,9 @@ logger = logging.getLogger(__name__)
 
 
 class AdvLibException(Exception):
-    def __init__(self, message, status):
-        super().__init__(message)
-        self.status = status
+    def __init__(self, **kwargs):
+        super().__init__(kwargs.get("message", "unknown message"))
+        self.status = kwargs.get("status", 400)
 
 
 class ADVClient:
