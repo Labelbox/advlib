@@ -83,3 +83,6 @@ class App:
             The number of imported vectors.
         """
         return self.client.get(f"adv/v1/embeddings/{id}/vectors/_count").get("count", 0)
+    
+    def create_data_row(self, payload: dict) -> dict:
+        return self.client.post("adv/v1/data-rows", payload)
