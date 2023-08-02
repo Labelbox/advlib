@@ -84,5 +84,5 @@ class App:
         """
         return self.client.get(f"adv/v1/embeddings/{id}/vectors/_count").get("count", 0)
     
-    def create_data_row(self, payload: dict) -> dict:
-        return self.client.post("adv/v1/data-rows", payload)
+    def create_data_row(self, dataset_id: str, payload: dict) -> dict:
+        return self.client.post(f"adv/v1/dataset/{dataset_id}/data-rows", payload)
