@@ -15,8 +15,8 @@ class AdvLibException(Exception):
 
 
 class ADVClient:
-    def __init__(self, apikey=None):
-        self.url = os.environ.get("LABELBOX_API_URL", "https://api.labelbox.com/adv/")
+    def __init__(self, apikey=None, endpoint=None):
+        self.endpoint = endpoint or os.environ.get("LABELBOX_API_URL", "https://api.labelbox.com")
         self.apikey = apikey or self.load_api_key()
 
     def load_api_key(self):
@@ -87,6 +87,7 @@ class ADVClient:
             data = json.dumps(body)
         else:
             data = body
+        path = f"/adv/{path}"
         url = self._make_url(path)
         rsp = request_function(url, data=data, headers=self._headers())
         return self.__handle_rsp(rsp, is_json)
@@ -94,6 +95,7 @@ class ADVClient:
     def __handle_rsp(self, rsp, is_json):
         if rsp.status_code != 200:
             self._raise_exception(rsp)
+
         if is_json and len(rsp.content):
             rsp_val = rsp.json()
             if logger.getEffectiveLevel() == logging.DEBUG:
@@ -124,4 +126,4 @@ class ADVClient:
         return headers
 
     def _make_url(self, path):
-        return f"{self.url}{path}"
+        return f"{self.endpoint}{path}"
