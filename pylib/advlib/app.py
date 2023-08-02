@@ -85,4 +85,14 @@ class App:
         return self.client.get(f"adv/v1/embeddings/{id}/vectors/_count").get("count", 0)
     
     def create_data_row(self, dataset_id: str, payload: dict) -> dict:
+        """
+        Creates data row in ADV in synchronous manner.
+
+        Args:
+            dataset_id: Id of a dataset to which data row shall be appended to.
+            payload: Details of data row to be created.
+
+        Returns:
+            Newly created data row object.
+        """
         return self.client.post(f"adv/v1/dataset/{dataset_id}/data-rows", payload)
