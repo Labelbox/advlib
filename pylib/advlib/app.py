@@ -6,8 +6,8 @@ class App:
     The base application class for ADVLib.
     """
 
-    def __init__(self, apikey=None):
-        self.client = ADVClient(apikey)
+    def __init__(self, apikey=None, endpoint=None):
+        self.client = ADVClient(apikey, endpoint)
 
     def create_embedding_type(self, name: str, dims: int) -> dict:
         """
