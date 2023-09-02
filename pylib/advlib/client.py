@@ -77,7 +77,7 @@ class ADVClient:
 
     def send_bytes(self, path, buffer, headers=None):
         buffer.seek(0)
-        return requests.put(self._make_url(path),
+        return requests.put(self._make_url(self.make_path(path)),
                             headers=self._headers(headers),
                             data=buffer)
 
@@ -87,8 +87,7 @@ class ADVClient:
             data = json.dumps(body)
         else:
             data = body
-        path = f"adv/{path}"
-        url = self._make_url(path)
+        url = self._make_url(self.make_path(path))
         rsp = request_function(url, data=data, headers=self._headers())
         return self.__handle_rsp(rsp, is_json)
 
@@ -125,5 +124,8 @@ class ADVClient:
             headers.update(merge)
         return headers
 
+    def make_path(self, path):
+        return f"/adv/{path}"
+
     def _make_url(self, path):
-        return f"{self.endpoint}/{path}"
+        return f"{self.endpoint}{path}"
