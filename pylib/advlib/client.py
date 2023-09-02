@@ -16,7 +16,7 @@ class AdvLibException(Exception):
 
 class ADVClient:
     def __init__(self, apikey=None, endpoint=None):
-        self.endpoint = endpoint or os.environ.get("LABELBOX_API_URL", "https://api.labelbox.com")
+        self.endpoint = endpoint or os.environ.get("LABELBOX_API_URL", "https://api.labelbox.com/")
         self.apikey = apikey or self.load_api_key()
 
     def load_api_key(self):
@@ -126,4 +126,4 @@ class ADVClient:
         return headers
 
     def _make_url(self, path):
-        return f"{self.endpoint}/{path}"
+        return f"{self.endpoint}{path}"
