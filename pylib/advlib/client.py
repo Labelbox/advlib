@@ -87,7 +87,7 @@ class ADVClient:
             data = json.dumps(body)
         else:
             data = body
-        path = f"/adv/{path}"
+        path = f"adv/{path}"
         url = self._make_url(path)
         rsp = request_function(url, data=data, headers=self._headers())
         return self.__handle_rsp(rsp, is_json)
