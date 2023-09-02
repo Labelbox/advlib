@@ -126,4 +126,4 @@ class ADVClient:
         return headers
 
     def _make_url(self, path):
-        return f"{self.endpoint}{path}"
+        return f"{self.endpoint}/{path}"
